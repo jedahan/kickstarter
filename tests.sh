@@ -22,17 +22,17 @@ assert 'back Jane Awesome_Sauce 5555555555554444 50' \
 ''
 
 assert 'list Awesome_Sauce' \
-'-- John backed for $50\n' \
-'-- Jane backed for $50\n' \
+'-- John backed for $50' \
+'-- Jane backed for $50' \
 'Awesome_Sauce needs $400 more dollars to be successful'
 
 assert 'back Mary Awesome_Sauce 5474942730093167 400' \
 'Mary backed project Awesome_Sauce for $400'
 
 assert 'list Awesome_Sauce' \
-'-- John backed for $50\n' \
-'-- Jane backed for $50\n' \
-'-- Mary backed for $400\n' \
+'-- John backed for $50' \
+'-- Jane backed for $50' \
+'-- Mary backed for $400' \
 'Awesome_Sauce is successful!'
 
 assert 'backer John' \
