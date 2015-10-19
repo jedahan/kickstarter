@@ -71,4 +71,18 @@ assert './ksr.py backer Mary' \
 '-- Backed Awesome_Sauce for $400\n'\
 '-- Backed Add_then_remove for $99.99'
 
+# Should fail for non alphanumeric, or short or long strings
+# click failures exit with error code 2
+assert_raises './ksr.py back Kwwakjsakdljaksjdlkajsdlkasj Add_then_remove 4563960122002000 0' 2
+assert_raises './ksr.py back Kw Add_then_remove 4563960122002000 40' 2
+assert_raises './ksr.py back K~w Add_then_remove 4563960122002000 40' 2
+
+assert_raises './ksr.py back bob Kwwakjsakdljaksjdlkajsdlkasj 4563960122002000 0' 2
+assert_raises './ksr.py back bob Kw 4563960122002000 40' 2
+assert_raises './ksr.py back bob K~w 4563960122002000 40' 2
+
+assert_raises './ksr.py project Kwwakjsakdljaksjdlkajsdlkasj 500'
+assert_raises './ksr.py project Kw 456122002000 0' 2
+assert_raises './ksr.py project K~w 4563960122002000 0' 2
+
 assert_end tests

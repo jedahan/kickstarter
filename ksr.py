@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import click
 import sys
+import re
 from tinydb import TinyDB, where
 
 db = TinyDB('db.json')
@@ -54,14 +55,19 @@ def list_project(name):
     else:
       print("%s needs $%s more dollars to be successful" % (name, smooth(project['target'] - total)))
 
-def luhn10(card):
-  odd = [ int(x) for x in str(card)[1::2] ]
-  even = "".join([ str(2 * int(x)) for x in str(card)[::2] ])
-  checksum = sum(odd + [int(x) for x in even])
-  return checksum % 10
+def validate_name(ctx, param, value):
+  """Backer and project names must be alphanumeric + underscore + dash, from 4 to 20 chars"""
+  if len(value) > 20:
+    raise click.BadParameter("%s must be shorter than 20 characters" % param.human_readable_name)
+  if len(value) < 4:
+    raise click.BadParameter("%s must be longer than 4 characters" % param.human_readable_name)
+  if re.match('^[\w-]+$', value) is None:
+    raise click.BadParameter("%s contains non-alphanumeric or -_ characters" % param.human_readable_name)
+  return value
+
 
 @cli.command()
-@click.argument('name')
+@click.argument('name', callback=validate_name)
 def backer(name):
   """List backings for NAME"""
   if backings.contains(where("person")==name):
@@ -69,8 +75,8 @@ def backer(name):
       print("-- Backed %s for $%s" % ( backing['project'], smooth(backing['amount']) ))
 
 @cli.command('back')
-@click.argument('person')
-@click.argument('project')
+@click.argument('person', callback=validate_name)
+@click.argument('project', callback=validate_name)
 @click.argument('credit_card', type=click.IntRange(0,9999999999999999999))
 @click.argument('amount', type=float)
 def back(person, project, credit_card, amount):
@@ -78,6 +84,12 @@ def back(person, project, credit_card, amount):
 
   If AMOUNT is 0, the backing is removed
   """
+  def luhn10(card):
+    odd = [ int(x) for x in str(card)[1::2] ]
+    even = "".join([ str(2 * int(x)) for x in str(card)[::2] ])
+    checksum = sum(odd + [int(x) for x in even])
+    return checksum % 10
+
   if luhn10(credit_card):
     error("This card is invalid")
   if backings.contains( (where('person')!=person) & (where('credit_card')==credit_card)):
