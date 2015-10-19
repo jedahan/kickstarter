@@ -4,6 +4,10 @@ ksr is a mini kickstarter platform for the commandline. After cloning, you will 
 
 You can use `ksr help` for a quick reference of all the commands, or `ksr help [command]` for more details about a particular command.
 
+## Installation
+
+This has only been tested on python 3.5. It requires the click module, which can be installed with `pip install click`
+
 ## Commands
 
 ### project
