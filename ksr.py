@@ -23,7 +23,7 @@ def get_project(name):
 @click.argument('name')
 @click.argument('target', type=float)
 def project(name, target):
-  """Create a new project"""
+  """Create a new project NAME with goal $TARGET"""
   if projects.search(where('name') == name):
     error("Project %s already exists, please choose a unique name" % name)
   else:
@@ -37,7 +37,7 @@ def smooth(number):
 @cli.command('list')
 @click.argument('name', required=False)
 def list_project(name):
-  """List project details, or all projects if no name is specified"""
+  """List project NAME's details, or all projects if no name is specified"""
   if name == None:
     all_projects = projects.all()
     if len(all_projects):
@@ -63,7 +63,7 @@ def luhn10(card):
 @cli.command()
 @click.argument('name')
 def backer(name):
-  """List a backer's backings"""
+  """List backings for NAME"""
   if backings.contains(where("person")==name):
     for backing in backings.search(where("person")==name):
       print("-- Backed %s for $%s" % ( backing['project'], smooth(backing['amount']) ))
@@ -74,7 +74,7 @@ def backer(name):
 @click.argument('credit_card', type=int)
 @click.argument('amount', type=float)
 def back(person, project, credit_card, amount):
-  """Back a project"""
+  """Have PERSON back PROJECT with CREDIT_CARD for AMOUNT"""
   if luhn10(credit_card):
     error("This card is invalid")
   if backings.contains((where('credit_card')==credit_card)):

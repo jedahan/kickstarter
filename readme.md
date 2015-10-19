@@ -1,8 +1,9 @@
-# ksr - A mini kickstarter platform for the commandline
+# ksr - commandline kickstarter
 
 ksr is a mini kickstarter platform for the commandline.
 
-You can use `ksr help` for a quick reference of all the commands, or `ksr help [command]` for more details about a particular command.
+You can use `ksr --help` for a quick reference of all the commands, or `ksr command --help`
+ for more details about a particular command.
 
 ## Installation
 
