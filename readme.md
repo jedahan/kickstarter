@@ -6,7 +6,7 @@ You can use `ksr help` for a quick reference of all the commands, or `ksr help [
 
 ## Installation
 
-This has only been tested on python 3.5. It requires the click module, which can be installed with `pip install click`
+This has only been tested on python 3.5. It requires the click and tinydb modules, which can be installed with `pip install click tinydb`
 
 ## Commands
 
