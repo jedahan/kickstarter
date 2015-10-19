@@ -55,6 +55,14 @@ def luhn10(card):
   checksum = sum(odd + [int(x) for x in even])
   return checksum % 10
 
+@cli.command()
+@click.argument('name')
+def backer(name):
+  """List a backer's backings"""
+  if backings.contains(where("person")==name):
+    for backing in backings.search(where("person")==name):
+      print("-- Backed %s for $%i" % ( backing['project'], backing['amount'] ))
+
 @cli.command('back')
 @click.argument('person')
 @click.argument('project')
@@ -71,7 +79,7 @@ def back(person, project, credit_card, amount):
   project = get_project(project)
   backing = {
     'person': person,
-    'project': project,
+    'project': project['name'],
     'credit_card': credit_card,
     'amount': amount}
 
