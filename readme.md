@@ -9,15 +9,19 @@ If you are in bash, you can activate shell completion with `eval "$(_KSR_COMPLET
 
 ## Installation and Testing
 
-To install ksr system/virtualenv-wide: `pip install .`
+To install ksr system/virtualenv-wide `pip install .`
+
 To use without installing: `alias ksr=$PWD/bin/ksr`
-The tests require [assert.sh](https://github.com/dansoton/assert.sh), which can be installed with: `cd assert.sh; git submodule init; git submodule update; cd ..`
+
+The tests require [assert.sh](https://github.com/dansoton/assert.sh), which can be installed with `git submodule update --init --recursive`
+
 Run the tests via `./tests.sh`
+
 This has only been tested on python 3.5 on osx.
 
 ## Quick Reference
 
-Here is an example session:
+Here is an example session, which should give you a feel for typical commands:
 
 ```bash
 > project Awesome_Sauce 500
