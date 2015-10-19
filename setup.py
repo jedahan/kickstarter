@@ -1,8 +1,8 @@
-from setuptools import setup
+from setuptools import setup,find_packages
 
 setup(
     name='ksr',
-    version='0.1.1',
+    version='0.1.2',
     py_modules=['ksr'],
     url='https://github.com/jedahan/kickstarter',
     description='commandline kickstarter',
@@ -29,4 +29,7 @@ setup(
         [console_scripts]
         ksr=ksr:cli
     ''',
+    packages=find_packages(),
+    keywords = ['kickstarter'],
+    download_url = 'https://github.com/jedahan/kickstarter/tarball/0.1.2',
 )
