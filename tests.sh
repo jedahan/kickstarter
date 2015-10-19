@@ -6,7 +6,7 @@ set -e
 
 export PATH="bin:$PATH"
 
-rm db.json
+[ -f db.json ] && rm db.json
 
 assert 'ksr project Awesome_Sauce 500' \
 'Added Awesome_Sauce project with target of $500'
