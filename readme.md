@@ -5,6 +5,8 @@ ksr is a mini kickstarter platform for the commandline.
 You can use `ksr --help` for a quick reference of all the commands, or `ksr command --help`
  for more details about a particular command.
 
+If you are in bash, you can activate shell completion with `eval "$(_KSR_COMPLETE=source ksr)"`
+
 ## Installation
 
 To install ksr system/virtualenv-wide: `pip install .`
