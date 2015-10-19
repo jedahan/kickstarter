@@ -74,13 +74,15 @@ def backer(name):
 @click.argument('credit_card', type=int)
 @click.argument('amount', type=float)
 def back(person, project, credit_card, amount):
-  """Have PERSON back PROJECT with CREDIT_CARD for AMOUNT"""
+  """Have PERSON back PROJECT with CREDIT_CARD for AMOUNT
+
+  If AMOUNT is 0, the backing is removed
+  """
   if luhn10(credit_card):
     error("This card is invalid")
-  if backings.contains((where('credit_card')==credit_card)):
+  if backings.contains( (where('person')!=person) & (where('credit_card')==credit_card)):
     error("That card has already been added by another user!")
-  if backings.contains((where('person')==person) & (where('project')==project)):
-    error("%r has already backed %r" % (person, project))
+
   project = get_project(project)
   backing = {
     'person': person,
@@ -88,8 +90,15 @@ def back(person, project, credit_card, amount):
     'credit_card': credit_card,
     'amount': amount}
 
-  backings.insert(backing)
-  print("%s backed project %s for $%s" % (person, project['name'], smooth(amount)) )
+  if backings.contains((where('person')==person) & (where('project')==project['name'])):
+    if amount <= 0:
+      backings.remove((where('person')==person) & (where('project')==project['name']))
+      print("%s is no longer backing %s" % (person, project['name']))
+    else:
+      backings.update(backing, (where('person')==person) & (where('project')==project['name']))
+  else:
+    backings.insert(backing)
+    print("%s backed project %s for $%s" % (person, project['name'], smooth(amount)) )
 
 if __name__ == "__main__":
     cli()
