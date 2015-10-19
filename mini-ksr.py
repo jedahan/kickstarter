@@ -13,7 +13,7 @@ def cli():
   pass
 
 def error(string):
-  print(string)
+  print("ERROR: " + string)
   sys.exit(1)
 
 def get_project(name):
@@ -49,6 +49,12 @@ def list_project(name):
     else:
       print("%s needs %i more dollars to be successful" % (name, project['target'] - amount))
 
+def luhn10(card):
+  odd = [ int(x) for x in str(card)[1::2] ]
+  even = "".join([ str(2 * int(x)) for x in str(card)[::2] ])
+  checksum = sum(odd + [int(x) for x in even])
+  return checksum % 10
+
 @cli.command('back')
 @click.argument('person')
 @click.argument('project')
@@ -56,17 +62,21 @@ def list_project(name):
 @click.argument('amount', type=float)
 def back(person, project, credit_card, amount):
   """Back a project"""
+  if luhn10(credit_card):
+    error("This card is invalid")
+  if backings.contains((where('credit_card')==credit_card)):
+    error("That card has already been added by another user!")
+  if backings.contains((where('person')==person) & (where('project')==project)):
+    error("%r has already backed %r" % (person, project))
   project = get_project(project)
   backing = {
     'person': person,
     'project': project,
     'credit_card': credit_card,
     'amount': amount}
-  if backings.contains((where('person')==person) & (where('project')==project)):
-    error("%r has already backed %r" % (person, project))
-  else:
-    backings.insert(backing)
-    print("%s backed project %s for $%i" % (person, project['name'], amount) )
+
+  backings.insert(backing)
+  print("%s backed project %s for $%i" % (person, project['name'], amount) )
 
 if __name__ == "__main__":
     cli()
