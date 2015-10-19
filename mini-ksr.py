@@ -44,14 +44,15 @@ def list_project(name):
       print("Projects:\n-- " + "\n-- ".join([p['name'] for p in all_projects]))
   else:
     project = get_project(name)
-    amount = 0
-    for backing in backings.all():
-      amount = amount + backing['amount']
-      print("-- %s backed for $%i" % (backing['person'], backing['amount']) )
-    if amount >= project['target']:
+    total = 0.0
+    for backing in backings.search(where('project')==name):
+      amount = smooth(backing['amount'])
+      total = total + amount
+      print("-- %s backed for $%s" % (backing['person'], amount) )
+    if total >= project['target']:
       print("%s is successful!" % name)
     else:
-      print("%s needs $%i more dollars to be successful" % (name, project['target'] - amount))
+      print("%s needs $%s more dollars to be successful" % (name, smooth(project['target'] - total)))
 
 def luhn10(card):
   odd = [ int(x) for x in str(card)[1::2] ]
