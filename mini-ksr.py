@@ -44,10 +44,10 @@ def list_project(name):
     for backing in backings.all():
       amount = amount + backing['amount']
       print("-- %s backed for $%i" % (backing['person'], backing['amount']) )
-    if amount > project['target']:
-      print("%s is successfull!")
+    if amount >= project['target']:
+      print("%s is successful!" % name)
     else:
-      print("%s needs %i more dollars to be successful" % (name, project['target'] - amount))
+      print("%s needs $%i more dollars to be successful" % (name, project['target'] - amount))
 
 def luhn10(card):
   odd = [ int(x) for x in str(card)[1::2] ]
