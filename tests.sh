@@ -71,5 +71,4 @@ assert './ksr.py backer Mary' \
 '-- Backed Awesome_Sauce for $400\n'\
 '-- Backed Add_then_remove for $99.99'
 
-
 assert_end tests

@@ -71,7 +71,7 @@ def backer(name):
 @cli.command('back')
 @click.argument('person')
 @click.argument('project')
-@click.argument('credit_card', type=int)
+@click.argument('credit_card', type=click.IntRange(0,9999999999999999999))
 @click.argument('amount', type=float)
 def back(person, project, credit_card, amount):
   """Have PERSON back PROJECT with CREDIT_CARD for AMOUNT
