@@ -31,5 +31,5 @@ setup(
     ''',
     packages=find_packages(),
     keywords = ['kickstarter'],
-    download_url = 'https://github.com/jedahan/kickstarter/tarball/0.1.2',
+    download_url = 'https://github.com/jedahan/kickstarter/tarball/0.1.3',
 )
