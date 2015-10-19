@@ -1,17 +1,44 @@
 # ksr - A mini kickstarter platform for the commandline
 
-ksr is a mini kickstarter platform for the commandline. After cloning, you will probably want to `alias ksr=$PWD/bin/ksr` to immediately start using `ksr`.
+ksr is a mini kickstarter platform for the commandline.
 
 You can use `ksr help` for a quick reference of all the commands, or `ksr help [command]` for more details about a particular command.
 
 ## Installation
 
-This has only been tested on python 3.5. It requires the click and tinydb modules, which can be installed with `pip install click tinydb`
+To install ksr system/virtualenv-wide: `pip install .`
+To use without installing: `alias ksr=$PWD/bin/ksr`
+To run the tests: `./tests.sh`
+This has only been tested on python 3.5 on osx.
 
-## Commands
+## Quick Reference
 
-### project
-`ksr project [Project_Name] [Target_Dollars]`, for example `ksr project Awesome_Sauce 500`
+Here is an example session:
 
-To create a new project, just pick a project name and dollar amount for it to be successfull. Your project name must be unique, and cannot be changed.
+```bash
+> project Awesome_Sauce 500
+Added Awesome_Sauce project with target of $500
 
+> back John Awesome_Sauce 4111111111111111 50
+John backed project Awesome_Sauce for $50
+
+> back Jane Awesome_Sauce 5555555555554444 50
+Jane backed project Awesome_Sauce for $50
+
+> list Awesome_Sauce
+-- John backed for $50
+-- Jane backed for $50
+Awesome_Sauce needs $400 more dollars to be successful
+
+> back Mary Awesome_Sauce 5474942730093167 400
+Mary backed project Awesome_Sauce for $400
+
+> list Awesome_Sauce
+-- John backed for $50
+-- Jane backed for $50
+-- Mary backed for $400
+Awesome_Sauce is successful!
+
+> backer John
+-- Backed Awesome_Sauce for $50
+```
