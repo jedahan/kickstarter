@@ -1,6 +1,6 @@
 # ksr - A mini kickstarter platform for the commandline
 
-ksr is a mini kickstarter platform for the commandline. After cloning, you will probably want to `alias ksr=$PWD/bin/ksr` to add the ksr command to your path. If you are even lazier and don't mind polluting your path, `export PATH="$PWD/bin:$PATH"` will add the commands `back`,`backer`,`project`,`list`, and `ksr`.
+ksr is a mini kickstarter platform for the commandline. After cloning, you will probably want to `alias ksr=$PWD/bin/ksr` to immediately start using `ksr`.
 
 You can use `ksr help` for a quick reference of all the commands, or `ksr help [command]` for more details about a particular command.
 
