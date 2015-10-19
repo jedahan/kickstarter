@@ -21,14 +21,18 @@ def get_project(name):
 
 @cli.command()
 @click.argument('name')
-@click.argument('target', type=int)
+@click.argument('target', type=float)
 def project(name, target):
   """Create a new project"""
   if projects.search(where('name') == name):
     error("Project %s already exists, please choose a unique name" % name)
   else:
     projects.insert({'name': name, 'target': target})
-    print("Added %s project with target of $%i" % (name, target) )
+    print("Added %s project with target of $%s" % (name, smooth(target)) )
+
+def smooth(number):
+  """Returns an integer if the float is a whole number"""
+  return int(number) if number.is_integer() else number
 
 @cli.command('list')
 @click.argument('name', required=False)
@@ -61,7 +65,7 @@ def backer(name):
   """List a backer's backings"""
   if backings.contains(where("person")==name):
     for backing in backings.search(where("person")==name):
-      print("-- Backed %s for $%i" % ( backing['project'], backing['amount'] ))
+      print("-- Backed %s for $%s" % ( backing['project'], smooth(backing['amount']) ))
 
 @cli.command('back')
 @click.argument('person')
@@ -84,7 +88,7 @@ def back(person, project, credit_card, amount):
     'amount': amount}
 
   backings.insert(backing)
-  print("%s backed project %s for $%i" % (person, project['name'], amount) )
+  print("%s backed project %s for $%s" % (person, project['name'], smooth(amount)) )
 
 if __name__ == "__main__":
     cli()

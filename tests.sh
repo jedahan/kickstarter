@@ -40,4 +40,15 @@ assert 'ksr list Awesome_Sauce' \
 assert 'ksr backer John' \
 '-- Backed Awesome_Sauce for $50'
 
+assert 'ksr project Floating_target 500.01' \
+'Added Floating_target project with target of $500.01'
+
+assert 'ksr back Kwabena Floating_target 4563960122001999 50.01' \
+'Kwabena backed project Floating_target for $50.01'
+
+assert 'ksr list Floating_target' \
+'-- Kwabena backed for $50.01\n'\
+'Floating_target needs $450 more dollars to be successful'
+
+
 assert_end tests
