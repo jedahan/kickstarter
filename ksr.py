@@ -17,43 +17,9 @@ def error(string):
   print("ERROR: " + string)
   sys.exit(1)
 
-def get_project(name):
-  return projects.get(where('name') == name) or error("Project %r not found" % name)
-
-@cli.command()
-@click.argument('name')
-@click.argument('target', type=float)
-def project(name, target):
-  """Create a new project NAME with goal $TARGET"""
-  if projects.search(where('name') == name):
-    error("Project %s already exists, please choose a unique name" % name)
-  else:
-    projects.insert({'name': name, 'target': target})
-    print("Added %s project with target of $%s" % (name, smooth(target)) )
-
 def smooth(number):
   """Returns an integer if the float is a whole number"""
   return int(number) if number.is_integer() else number
-
-@cli.command('list')
-@click.argument('name', required=False)
-def list_project(name):
-  """List project NAME's details, or all projects if no name is specified"""
-  if name == None:
-    all_projects = projects.all()
-    if len(all_projects):
-      print("Projects:\n-- " + "\n-- ".join([p['name'] for p in all_projects]))
-  else:
-    project = get_project(name)
-    total = 0.0
-    for backing in backings.search(where('project')==name):
-      amount = smooth(backing['amount'])
-      total = total + amount
-      print("-- %s backed for $%s" % (backing['person'], amount) )
-    if total >= project['target']:
-      print("%s is successful!" % name)
-    else:
-      print("%s needs $%s more dollars to be successful" % (name, smooth(project['target'] - total)))
 
 def validate_name(ctx, param, value):
   """Backer and project names must be alphanumeric + underscore + dash, from 4 to 20 chars"""
@@ -65,6 +31,37 @@ def validate_name(ctx, param, value):
     raise click.BadParameter("%s contains non-alphanumeric or -_ characters" % param.human_readable_name)
   return value
 
+@cli.command('project')
+@click.argument('name', callback=validate_name)
+@click.argument('target', type=float)
+def add_project(name, target):
+  """Create a new project NAME with goal $TARGET"""
+  if projects.contains(where('name')==name):
+    error("Project %s already exists, please choose a unique name" % name)
+  else:
+    projects.insert({'name': name, 'target': target})
+    print("Added %s project with target of $%s" % (name, smooth(target)))
+
+@cli.command('list')
+@click.argument('name', required=False)
+def list_project(name):
+  """List project NAME's details, or all projects if no name is specified"""
+  if not name or not projects.contains(where('name')==name):
+    if name:
+      print("Project %r not found" % name)
+    if len(projects):
+      print("All Projects:\n-- " + "\n-- ".join([p['name'] for p in projects.all()]))
+  else:
+    total = 0.0
+    _, target = projects.get(where('name')==name)
+    for backing in backings.search(where('project')==name):
+      amount = smooth(backing['amount'])
+      total = total + amount
+      print("-- %s backed for $%s" % (backing['person'], amount) )
+    if total >= target:
+      print("%s is successful!" % name)
+    else:
+      print("%s needs $%s more dollars to be successful" % (name, smooth(target - total)))
 
 @cli.command()
 @click.argument('name', callback=validate_name)
@@ -92,25 +89,29 @@ def back(person, project, credit_card, amount):
 
   if luhn10(credit_card):
     error("This card is invalid")
-  if backings.contains( (where('person')!=person) & (where('credit_card')==credit_card)):
+  if backings.contains((where('person')!=person) & (where('credit_card')==credit_card)):
     error("That card has already been added by another user!")
 
-  project = get_project(project)
+  if not projects.contains(where('name')==project):
+    error("Project %r not found" % project)
+
   backing = {
     'person': person,
-    'project': project['name'],
+    'project': project,
     'credit_card': credit_card,
-    'amount': amount}
+    'amount': amount
+    }
 
-  if backings.contains((where('person')==person) & (where('project')==project['name'])):
+  backing_search = (where('person')==person) & (where('project')==project)
+  if backings.contains(backing_search):
     if amount <= 0:
-      backings.remove((where('person')==person) & (where('project')==project['name']))
-      print("%s is no longer backing %s" % (person, project['name']))
+      backings.remove(backing_search)
+      print("%s is no longer backing %s" % (person, project))
     else:
-      backings.update(backing, (where('person')==person) & (where('project')==project['name']))
+      backings.update(backing, backing_search)
   else:
     backings.insert(backing)
-    print("%s backed project %s for $%s" % (person, project['name'], smooth(amount)) )
+    print("%s backed project %s for $%s" % (person, project, smooth(amount)) )
 
 if __name__ == "__main__":
     cli()

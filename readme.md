@@ -1,6 +1,8 @@
 # ksr - commandline kickstarter
 
-ksr is a mini kickstarter platform for the commandline.
+ksr is a mini kickstarter platform for the commandline. to install:
+
+    pip3 install ksr
 
 You can use `ksr --help` for a quick reference of all the commands, or `ksr command --help`
  for more details about a particular command.
