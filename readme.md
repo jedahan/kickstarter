@@ -1,4 +1,5 @@
 # ksr - commandline kickstarter
+[![Build Status](https://travis-ci.org/jedahan/kickstarter.svg)](https://travis-ci.org/jedahan/kickstarter)
 
 ksr is a mini kickstarter platform for the commandline
 
