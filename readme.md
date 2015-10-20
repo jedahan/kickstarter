@@ -1,5 +1,4 @@
-# ksr - commandline kickstarter
-[![Build Status](https://travis-ci.org/jedahan/kickstarter.svg)](https://travis-ci.org/jedahan/kickstarter)
+# ksr - commandline kickstarter [![Build Status](https://travis-ci.org/jedahan/kickstarter.svg)](https://travis-ci.org/jedahan/kickstarter)
 
 ksr is a mini kickstarter platform for the commandline
 
@@ -9,7 +8,7 @@ ksr is a mini kickstarter platform for the commandline
 ## Help
 
 You can use `ksr --help` for a quick reference of all the commands, or `ksr command --help`
- for more details about a particular command. Do not hesitate to [create a github issue](https://github.com/jedahan/kickstarter/issues) if anything is unclear.
+ for more details about a particular command. Do not hesitate to [create a github issue](https://github.com/jedahan/kickstarter/issues) or join our chat channel [on the web](http://webchat.freenode.net/?randomnick=1&channels=%23ksr&uio=d4) or [via irc](irc://irc.freenode.net/ksr) if anything is unclear.
 
 ## Installation
 
