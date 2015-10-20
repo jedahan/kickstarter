@@ -31,7 +31,7 @@ This has only been tested on python 3.5 on osx.
       backer   List a backer's backings
       list     List project details, or all projects if no...
 
-
+ksr can create a project, list a project, back a project, or list a backers backings.
 
     ksr back PERSON PROJECT CREDIT_CARD AMOUNT
 
