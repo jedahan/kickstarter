@@ -23,6 +23,37 @@ This has only been tested on python 3.5 on osx.
 
 ## Quick Reference
 
+    Usage: ksr COMMAND [ARGS]...
+
+    Commands:
+      project  Create a new project
+      back     Back a project
+      backer   List a backer's backings
+      list     List project details, or all projects if no...
+
+
+
+    ksr back PERSON PROJECT CREDIT_CARD AMOUNT
+
+Have a PERSON back a PROJECT for AMOUNT dollars with a CREDIT_CARD
+
+    ksr project NAME TARGET
+
+Create a project called NAME with a target dollar amount of TARGET
+
+    ksr list [NAME]
+
+If no name is given, list all projects. If a NAME is given, list all
+  the people who backed the project, how much they backed it for, and if
+  the project is successfull or how much more funds it needs.
+
+    ksr backer NAME
+
+List all the projects a particular backer has backed, and for how much
+
+
+## Example Session
+
 Here is an example session, which should give you a feel for typical commands:
 
 ```bash
