@@ -22,28 +22,33 @@
       <h1>
 <a id="ksr---commandline-kickstarter" class="anchor" href="#ksr---commandline-kickstarter" aria-hidden="true"><span class="octicon octicon-link"></span></a>ksr - commandline kickstarter</h1>
 
-<p>ksr is a mini kickstarter platform for the commandline. to install:</p>
+<p>ksr is a mini kickstarter platform for the commandline</p>
 
 <pre><code>pip3 install ksr
+ksr --help
 </code></pre>
 
+<h2>
+<a id="help" class="anchor" href="#help" aria-hidden="true"><span class="octicon octicon-link"></span></a>Help</h2>
+
 <p>You can use <code>ksr --help</code> for a quick reference of all the commands, or <code>ksr command --help</code>
- for more details about a particular command.</p>
+ for more details about a particular command. Do not hesitate to <a href="https://github.com/jedahan/kickstarter/issues">create a github issue</a> if anything is unclear.</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p><code>ksr</code> is in the python package repositories, so <code>pip install ksr</code> should get you the latest stable release.</p>
 
 <p>If you are in bash, you can activate shell completion with <code>eval "$(_KSR_COMPLETE=source ksr)"</code></p>
 
 <h2>
-<a id="installation-and-testing" class="anchor" href="#installation-and-testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation and Testing</h2>
+<a id="testing-and-development" class="anchor" href="#testing-and-development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing and Development</h2>
 
-<p>To install ksr system/virtualenv-wide <code>pip install .</code></p>
+<p>The tests require <a href="https://github.com/dansoton/assert.sh">assert.sh</a>, which are included as a submodule, and can be installed with <code>git submodule update --init --recursive</code></p>
 
-<p>To use without installing: <code>alias ksr=$PWD/bin/ksr</code></p>
+<p>Run the tests via <code>./tests.sh</code>. <code>ksr</code> has only been tested on python 3.5 on osx.</p>
 
-<p>The tests require <a href="https://github.com/dansoton/assert.sh">assert.sh</a>, which can be installed with <code>git submodule update --init --recursive</code></p>
-
-<p>Run the tests via <code>./tests.sh</code></p>
-
-<p>This has only been tested on python 3.5 on osx.</p>
+<p>If you'd like to contribute, thanks! To install the modifiable source code directly, try <code>pip install -e .</code></p>
 
 <h2>
 <a id="quick-reference" class="anchor" href="#quick-reference" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick Reference</h2>
