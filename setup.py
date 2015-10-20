@@ -2,7 +2,7 @@ from setuptools import setup,find_packages
 
 setup(
     name='ksr',
-    version='0.1.4',
+    version='0.1.5',
     py_modules=['ksr'],
     url='https://github.com/jedahan/kickstarter',
     description='commandline kickstarter',
@@ -31,5 +31,5 @@ setup(
     ''',
     packages=find_packages(),
     keywords = ['kickstarter'],
-    download_url = 'https://github.com/jedahan/kickstarter/tarball/0.1.3',
+    download_url = 'https://github.com/jedahan/kickstarter/tarball/0.1.5',
 )
