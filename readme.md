@@ -1,25 +1,28 @@
 # ksr - commandline kickstarter
 
-ksr is a mini kickstarter platform for the commandline. to install:
+ksr is a mini kickstarter platform for the commandline
 
     pip3 install ksr
+    ksr --help
+
+## Help
 
 You can use `ksr --help` for a quick reference of all the commands, or `ksr command --help`
- for more details about a particular command.
+ for more details about a particular command. Do not hesitate to [create a github issue](https://github.com/jedahan/kickstarter/issues) if anything is unclear.
+
+## Installation
+
+`ksr` is in the python package repositories, so `pip install ksr` should get you the latest stable release.
 
 If you are in bash, you can activate shell completion with `eval "$(_KSR_COMPLETE=source ksr)"`
 
-## Installation and Testing
+## Testing and Development
 
-To install ksr system/virtualenv-wide `pip install .`
+The tests require [assert.sh](https://github.com/dansoton/assert.sh), which are included as a submodule, and can be installed with `git submodule update --init --recursive`
 
-To use without installing: `alias ksr=$PWD/bin/ksr`
+Run the tests via `./tests.sh`. `ksr` has only been tested on python 3.5 on osx.
 
-The tests require [assert.sh](https://github.com/dansoton/assert.sh), which can be installed with `git submodule update --init --recursive`
-
-Run the tests via `./tests.sh`
-
-This has only been tested on python 3.5 on osx.
+If you'd like to contribute, thanks! To install the modifiable source code directly, try `pip install -e .`
 
 ## Quick Reference
 
