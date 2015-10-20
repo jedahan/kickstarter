@@ -5,6 +5,11 @@ language: python
 python:
   - "3.4"
   - "3.5"
+before_install:
+  - if [ $TRAVIS_OS_NAME = osx ]; then
+      source terryfy/travis_tools.sh
+      get_python_environment macpython $VERSION venv
+    fi
 install: pip install -e .
 script: bash tests.sh
 notifications:

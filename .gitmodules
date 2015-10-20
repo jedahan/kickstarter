@@ -1,3 +1,6 @@
 [submodule "assert.sh"]
 	path = assert.sh
 	url = https://github.com/dansoton/assert.sh.git
+[submodule "terryfy"]
+	path = terryfy
+	url = https://github.com/MacPython/terryfy.git
