@@ -2,7 +2,7 @@ from setuptools import setup,find_packages
 
 setup(
     name='ksr',
-    version='0.1.3',
+    version='0.1.4',
     py_modules=['ksr'],
     url='https://github.com/jedahan/kickstarter',
     description='commandline kickstarter',
