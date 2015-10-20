@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>ksr by jedahan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">ksr</h1>
+      <h2 class="project-tagline">commandline kickstarter</h2>
+      <a href="https://github.com/jedahan/kickstarter" class="btn">View on GitHub</a>
+      <a href="https://github.com/jedahan/kickstarter/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/jedahan/kickstarter/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="ksr---commandline-kickstarter" class="anchor" href="#ksr---commandline-kickstarter" aria-hidden="true"><span class="octicon octicon-link"></span></a>ksr - commandline kickstarter</h1>
+
+<p>ksr is a mini kickstarter platform for the commandline. to install:</p>
+
+<pre><code>pip3 install ksr
+</code></pre>
+
+<p>You can use <code>ksr --help</code> for a quick reference of all the commands, or <code>ksr command --help</code>
+ for more details about a particular command.</p>
+
+<p>If you are in bash, you can activate shell completion with <code>eval "$(_KSR_COMPLETE=source ksr)"</code></p>
+
+<h2>
+<a id="installation-and-testing" class="anchor" href="#installation-and-testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation and Testing</h2>
+
+<p>To install ksr system/virtualenv-wide <code>pip install .</code></p>
+
+<p>To use without installing: <code>alias ksr=$PWD/bin/ksr</code></p>
+
+<p>The tests require <a href="https://github.com/dansoton/assert.sh">assert.sh</a>, which can be installed with <code>git submodule update --init --recursive</code></p>
+
+<p>Run the tests via <code>./tests.sh</code></p>
+
+<p>This has only been tested on python 3.5 on osx.</p>
+
+<h2>
+<a id="quick-reference" class="anchor" href="#quick-reference" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick Reference</h2>
+
+<pre><code>Usage: ksr COMMAND [ARGS]...
+
+Commands:
+  project  Create a new project
+  back     Back a project
+  backer   List a backer's backings
+  list     List project details, or all projects if no...
+</code></pre>
+
+<p>ksr can create a project, list a project, back a project, or list a backers backings.</p>
+
+<pre><code>ksr back PERSON PROJECT CREDIT_CARD AMOUNT
+</code></pre>
+
+<p>Have a PERSON back a PROJECT for AMOUNT dollars with a CREDIT_CARD</p>
+
+<pre><code>ksr project NAME TARGET
+</code></pre>
+
+<p>Create a project called NAME with a target dollar amount of TARGET</p>
+
+<pre><code>ksr list [NAME]
+</code></pre>
+
+<p>If no name is given, list all projects. If a NAME is given, list all
+  the people who backed the project, how much they backed it for, and if
+  the project is successfull or how much more funds it needs.</p>
+
+<pre><code>ksr backer NAME
+</code></pre>
+
+<p>List all the projects a particular backer has backed, and for how much</p>
+
+<h2>
+<a id="example-session" class="anchor" href="#example-session" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example Session</h2>
+
+<p>Here is an example session, which should give you a feel for typical commands:</p>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-k">&gt;</span> project Awesome_Sauce 500
+Added Awesome_Sauce project with target of <span class="pl-smi">$5</span>00
+
+<span class="pl-k">&gt;</span> back John Awesome_Sauce 4111111111111111 50
+John backed project Awesome_Sauce <span class="pl-k">for</span> <span class="pl-smi">$50</span>
+
+<span class="pl-k">&gt;</span> back Jane Awesome_Sauce 5555555555554444 50
+Jane backed project Awesome_Sauce <span class="pl-k">for</span> <span class="pl-smi">$50</span>
+
+<span class="pl-k">&gt;</span> list Awesome_Sauce
+-- John backed <span class="pl-k">for</span> <span class="pl-smi">$50</span>
+-- Jane backed <span class="pl-k">for</span> <span class="pl-smi">$50</span>
+Awesome_Sauce needs <span class="pl-smi">$4</span>00 more dollars to be successful
+
+<span class="pl-k">&gt;</span> back Mary Awesome_Sauce 5474942730093167 400
+Mary backed project Awesome_Sauce <span class="pl-k">for</span> <span class="pl-smi">$400</span>
+
+<span class="pl-k">&gt;</span> list Awesome_Sauce
+-- John backed <span class="pl-k">for</span> <span class="pl-smi">$50</span>
+-- Jane backed <span class="pl-k">for</span> <span class="pl-smi">$50</span>
+-- Mary backed <span class="pl-k">for</span> <span class="pl-smi">$400</span>
+Awesome_Sauce is successful<span class="pl-k">!</span>
+
+<span class="pl-k">&gt;</span> backer John
+-- Backed Awesome_Sauce <span class="pl-k">for</span> <span class="pl-smi">$50</span></pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/jedahan/kickstarter">ksr</a> is maintained by <a href="https://github.com/jedahan">jedahan</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
