@@ -81,7 +81,7 @@ assert_raises './ksr.py back bob Kwwakjsakdljaksjdlkajsdlkasj 4563960122002000 0
 assert_raises './ksr.py back bob Kw 4563960122002000 40' 2
 assert_raises './ksr.py back bob K~w 4563960122002000 40' 2
 
-assert_raises './ksr.py project Kwwakjsakdljaksjdlkajsdlkasj 500'
+assert_raises './ksr.py project Kwwakjsakdljaksjdlkajsdlkasj 500' 2
 assert_raises './ksr.py project Kw 456122002000 0' 2
 assert_raises './ksr.py project K~w 4563960122002000 0' 2
 
