@@ -53,7 +53,7 @@ def list_project(name):
       print("All Projects:\n-- " + "\n-- ".join([p['name'] for p in projects.all()]))
   else:
     total = 0.0
-    _, target = projects.get(where('name')==name)
+    target = projects.get(where('name')==name)['target']
     for backing in backings.search(where('project')==name):
       amount = smooth(backing['amount'])
       total = total + amount
