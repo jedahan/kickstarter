@@ -2,10 +2,16 @@ language: python
 python:
   - "2.6"
   - "2.7"
-  - "3.2"
-  - "3.3"
   - "3.4"
   - "3.5"
-install: pip install .
-script: ./tests.sh
-
+install:
+  pip install -e .
+script:
+  -- bash tests.sh
+notifications:
+  irc:
+    channels: "irc.freenode.org#ksr"
+    template:
+      - "%{repository}@%{branch}: %{message} (%{build_url})"
+    on_success: change
+    on_failure: change
